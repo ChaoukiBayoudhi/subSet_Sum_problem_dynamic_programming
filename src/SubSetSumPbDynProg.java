@@ -6,6 +6,8 @@ public class SubSetSumPbDynProg {
     public static boolean[][] dpTable;
     public static List<Integer> numbers=new ArrayList<>();
     public static int sum;
+    //this method read the sum value and numbers from keyboard
+    //numbers are given as String then we use split to extract numbers
     public static boolean getNumbersAndSum()
     {
         Scanner sc=new Scanner(System.in);
@@ -22,7 +24,7 @@ public class SubSetSumPbDynProg {
                 //or
                 //int val=Integer.parseInt();
                 if(val<0) //numbers must be positives
-                    throw new Exception("The set must be positive");
+                    throw new Exception("All the set numbers must be  positives");
                 numbers.add(val);
             }
             System.out.print("Give the sum value : ");
@@ -34,7 +36,7 @@ public class SubSetSumPbDynProg {
         return result;
 
     }
-    public static void solvePb()
+    public static void fillDpTable()
     {
         dpTable=new boolean[numbers.size()+1][sum+1];
         //The first line of the dpTable matrix is false except the first column
@@ -49,7 +51,7 @@ public class SubSetSumPbDynProg {
         for(int i=1;i<dpTable.length;i++)
             for(int j=1;j<dpTable[i].length;j++)
             {
-                if(numbers.get(i-1)>j) //we save the previous found sums
+                if(j<numbers.get(i-1)) //we save the previous found sums
                     dpTable[i][j]=dpTable[i-1][j];
                 else
                     if(dpTable[i-1][j])
