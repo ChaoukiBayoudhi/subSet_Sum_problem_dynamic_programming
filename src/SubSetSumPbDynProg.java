@@ -57,7 +57,6 @@ public class SubSetSumPbDynProg {
                     else
                         dpTable[i][j]=dpTable[i-1][j-numbers.get(i-1)];
             }
-
     }
     public static boolean hasSolution(){
 
